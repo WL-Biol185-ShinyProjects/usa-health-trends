@@ -6,14 +6,13 @@ fluidPage(
   # Application title
   titlePanel("Old Faithful Geyser Data"),
   
-  # Sidebar with a slider input for number of bins 
-  sidebarLayout(
-    sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
+  # Dropdown box with state's names
+  shinyApp(
+    ui = fluidPage(
+      selectInput("State", "Choose a state:",
+              list(Sample_R_Data$State, 
+              choices, selected = NULL, multiple = FALSE,
+              selectize = TRUE, width = NULL, size = NULL)
     ),
     
     # Show a plot of the generated distribution
@@ -21,4 +20,5 @@ fluidPage(
       plotOutput("distPlot")
     )
   )
+)
 )
