@@ -1,18 +1,24 @@
-library(shiny)
+mainPanel(
+  plotOutput('employed_plot')
+)
 
-# Define server logic required to draw a histogram
-function(input, output) {
+#IN SERVER.R
+library(shiny)
+library(tidyverse)
+library(ggplot2)
+
+#define server logic to draw historgram 
+funciton(input, output) {
   
-  output$distPlot <- renderPlot({
+  output$employed_plot <- renderPlot ({
     
-    # generate bins based on input$bins from ui.R
-    x    <- Sample_R_Data[, 2] 
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    recent_grads %>%
+      filter(Major_category == input$major_category) %>%
+      ggplot(aes(Major, Employed)) + geom_bar(stat = "identity")
+    #this line specifies to plot what the user selects as the category in the dropdown
     
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    
-  })
+  })}
+
   
 }
 
