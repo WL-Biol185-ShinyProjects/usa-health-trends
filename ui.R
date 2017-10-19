@@ -19,7 +19,7 @@ fluidPage(
                             
                              
                              selectInput(inputId = 'value' ,
-                             label = 'select value' ,
+                             label = 'Select Value' ,
                             choices = colnames(Sample_R_Data) [5:ncol(Sample_R_Data)])
                
                ),

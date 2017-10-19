@@ -5,9 +5,11 @@ library(tidyverse)
 library(ggplot2)
 
 Sample_R_Data <- read_xlsx("Sample R Data.xlsx")
+colnames(Sample_R_Data) <-c("FIPS", "State", "County", "HO_Rank", "HO_Quartile", "HF_Rank", "HF_Quartile")
+
 
 #define server logic to draw historgram 
-funciton(input, output) {
+function(input, output) {
   
   output$health_plot <- renderPlot ({
     
