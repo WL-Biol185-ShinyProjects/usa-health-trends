@@ -22,12 +22,13 @@ fluidPage(
                              label = 'select value' ,
                             choices = colnames(Sample_R_Data) [5:ncol(Sample_R_Data)])
                
-               )
-             )
-  )
+               ),
+          
 
 
 #Panel plot
 mainPanel(
-  plotOutput('health_plot')
+  plotOutput("health_plot")
+)
+
 ))
