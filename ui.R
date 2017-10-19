@@ -24,10 +24,10 @@ fluidPage(
                
                )
              )
-  ),
+  )
 
 
 #Panel plot
 mainPanel(
   plotOutput('health_plot')
-)
+))
