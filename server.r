@@ -14,7 +14,8 @@ function(input, output) {
   output$health_plot <- renderPlot ({
 
     Sample_R_Data[Sample_R_Data$State == input$State,] %>%
-      ggplot(aes_string("County", input$value)) + geom_bar(stat = "identity")
+      ggplot(aes_string("County", input$value)) + geom_bar(stat = "identity") + 
+                        theme(axis.text.x = element_text(angle = 60, hjust = 1))
     
   })}
 
