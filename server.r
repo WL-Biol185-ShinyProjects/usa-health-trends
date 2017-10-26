@@ -19,6 +19,9 @@ function(input, output) {
     
   })}
 
-  
+USA_health_trends_ranked_measure_data <- read.table("USA health trends ranked measure data.xlsx", 
+                        header     = TRUE,
+                        na.strings = "***"
+)
 
 
