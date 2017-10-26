@@ -5,9 +5,9 @@ library(readxl)
   #Sample_R_Data <- read_xlsx("Sample R Data.xlsx")
   #colnames(Sample_R_Data) <-c("FIPS", "State", "County", "HO_Rank", "HO_Quartile", "HF_Rank", "HF_Quartile")
 
-USA_health_trends_ranked_measure_data <- read_xlsx("USA health trends ranked measure data.xlsx", 
-                                                   header     = TRUE,
-                                                   na.strings = "***")
+USA_health <- read_xlsx("USA health trends ranked measure data.xlsx", 
+                                                   col_names     = TRUE,
+                                                   na = "***")
 
 # Sidebar with a slider input
 fluidPage(
@@ -26,7 +26,7 @@ fluidPage(
                              selectInput(inputId = 'value1' ,
                              label = 'Select First Value' ,
                             choices = colnames(USA_health_trends_ranked_measure_data)[4:ncol(USA_health_trends_ranked_measure_data)])
-               
+               #change input ID to something more specific
                ),
           
                               selectInput(inputId = 'value2' ,
