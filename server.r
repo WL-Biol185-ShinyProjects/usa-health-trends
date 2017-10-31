@@ -2,12 +2,12 @@
 library(shiny)
 library(tidyverse)
 library(ggplot2)
-library(readxl)
+library(readr)
 library(leaflet)
 
-USA_health <- read_csv("USA health trends ranked measure data.xlsx", 
-                                                   col_names = TRUE,
-                                                   na = c("***")
+USA_health <- read.csv("USA health.csv", 
+                                                   col.names = TRUE,
+                                                   na.strings = "***"
                                                   )
 
 
@@ -15,10 +15,6 @@ USA_health <- read_csv("USA health trends ranked measure data.xlsx",
 function(input, output) {
   
   output$health_plot <- renderPlot ({
-
-    #Sample_R_Data[Sample_R_Data$State == input$State,] %>%
-     # ggplot(aes_string("County", input$value)) + geom_bar(stat = "identity") + 
-      #                  theme(axis.text.x = element_text(angle = 60, hjust = 1))
   
 
    USA_health %>%

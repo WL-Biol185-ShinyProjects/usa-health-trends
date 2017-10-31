@@ -1,11 +1,12 @@
+library(tidyverse)
 library(shiny)
-library(readxl)
+library(readr)
 library(leaflet)
 
 
-USA_health <- read_csv("USA health trends ranked measure data.xlsx", 
-                                                   col_names     = TRUE,
-                                                   na = c("***"))
+USA_health <- read.csv("USA health.csv", 
+                                                   col.names     = TRUE,
+                                                   na.strings = "***")
 
 # Sidebar with a slider input
 fluidPage(
@@ -17,7 +18,7 @@ fluidPage(
                sidebarPanel(
                  selectInput(inputId = 'State', 
                              label = 'Select a state' , 
-                             choices = unique(Sample_R_Data$State)
+                             choices = unique(USA_health$State)
                              ),
                             
                       
