@@ -3,6 +3,7 @@ library(shiny)
 library(tidyverse)
 library(ggplot2)
 library(readxl)
+library(leaflet)
 
 USA_health <- read_xlsx("USA health trends ranked measure data.xlsx", 
                                                    col_names = TRUE,

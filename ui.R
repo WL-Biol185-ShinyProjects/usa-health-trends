@@ -1,5 +1,6 @@
 library(shiny)
 library(readxl)
+library(leaflet)
 
 #load file into r table 
   #Sample_R_Data <- read_xlsx("Sample R Data.xlsx")
@@ -25,13 +26,13 @@ fluidPage(
                       
                              selectInput(inputId = 'value1' ,
                              label = 'Select First Value' ,
-                            choices = colnames(USA_health_trends_ranked_measure_data)[4:ncol(USA_health_trends_ranked_measure_data)])
+                            choices = colnames(USA_health)[4:ncol(USA_health)])
                #change input ID to something more specific
                ),
           
                               selectInput(inputId = 'value2' ,
                              label = 'Select Second Value' ,
-                             choices = colnames(USA_health_trends_ranked_measure_data)[4:ncol(USA_health_trends_ranked_measure_data)]
+                             choices = colnames(USA_health)[4:ncol(USA_health)]
                              
                               ),
 
