@@ -2,13 +2,10 @@ library(shiny)
 library(readxl)
 library(leaflet)
 
-#load file into r table 
-  #Sample_R_Data <- read_xlsx("Sample R Data.xlsx")
-  #colnames(Sample_R_Data) <-c("FIPS", "State", "County", "HO_Rank", "HO_Quartile", "HF_Rank", "HF_Quartile")
 
-USA_health <- read_xlsx("USA health trends ranked measure data.xlsx", 
+USA_health <- read_csv("USA health trends ranked measure data.xlsx", 
                                                    col_names     = TRUE,
-                                                   na = "***")
+                                                   na = c("***"))
 
 # Sidebar with a slider input
 fluidPage(
