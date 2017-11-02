@@ -5,9 +5,12 @@ library(leaflet)
 
 
 USA_health <- read.csv("USA health.csv", 
-                                                   col.names     = TRUE,
-                                                   na.strings = "***")
-
+                                  col.names     = TRUE, 
+                                  stringsAsFactors = FALSE, 
+                                  header = TRUE, sep = ";",
+                                  na.strings = "***", as.numeric(4:ncol(USA_health)))
+ 
+  
 # Sidebar with a slider input
 fluidPage(
   
