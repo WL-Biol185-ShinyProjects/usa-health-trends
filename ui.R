@@ -8,8 +8,12 @@ USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
 USA_health$State <- factor(USA_health$State)
 USA_health$County <- factor(USA_health$County)
 
-# Sidebar with a slider input
 fluidPage(
+
+navbarPage("USA Health Trends",
+                  #tabPanel() MAPS AND LEAFLET CODE
+           
+                   tabPanel("Statewide Comparisons of Health Variables",
   
   titlePanel('Health Outcomes by County') , 
              
@@ -39,4 +43,4 @@ mainPanel(
 )
 
 
-))
+))))
