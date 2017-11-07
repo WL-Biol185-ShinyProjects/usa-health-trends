@@ -19,7 +19,7 @@ function(input, output) {
 
    USA_health %>%
       filter(State == input$State) %>%
-      ggplot(aes_string("County", input$value1)) + geom_bar(stat = "identity", color = input$value2) + 
+      ggplot(aes_string("County", input$value1)) + geom_bar(stat = "identity", fill(input$value2)) + 
       theme(axis.text.x = element_text(angle = 60, hjust = 1))
     
   })}
