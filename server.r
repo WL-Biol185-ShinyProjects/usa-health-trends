@@ -5,11 +5,8 @@ library(ggplot2)
 library(readr)
 library(leaflet)
 
-USA_health <- read_csv("~/usa-health-trends/USA health.csv", na = "***")   
-USA_health[20:21] <- NULL
-USA_health[24] <- NULL
-USA_health[27] <- NULL
-USA_health[59] <- NULL
+USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
+
 
 #define server logic to draw historgram 
 function(input, output) {

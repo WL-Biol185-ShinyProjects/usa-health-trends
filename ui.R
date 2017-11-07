@@ -4,11 +4,8 @@ library(readr)
 library(leaflet)
 
 
-USA_health <- read_csv("~/usa-health-trends/USA health.csv", na = "***")
-USA_health[20:21] <- NULL
-USA_health[24] <- NULL
-USA_health[27] <- NULL
-USA_health[59] <- NULL
+USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
+
 
 # Sidebar with a slider input
 fluidPage(
@@ -26,13 +23,13 @@ fluidPage(
                       
                              selectInput(inputId = 'value1' ,
                              label = 'Select First Value' ,
-                            choices = colnames(USA_health)[4:ncol(USA_health)])
+                            choices = colnames(USA_health)[3:ncol(USA_health)])
                #change input ID to something more specific
                ),
           
                               selectInput(inputId = 'value2' ,
                              label = 'Select Second Value' ,
-                             choices = colnames(USA_health)[4:ncol(USA_health)]
+                             choices = colnames(USA_health)[3:ncol(USA_health)]
                              
                               ),
 
