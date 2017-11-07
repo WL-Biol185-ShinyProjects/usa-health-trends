@@ -5,7 +5,8 @@ library(leaflet)
 
 
 USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
-
+USA_health$State <- factor(USA_health$State)
+USA_health$County <- factor(USA_health$County)
 
 # Sidebar with a slider input
 fluidPage(
@@ -23,7 +24,7 @@ fluidPage(
                       
                              selectInput(inputId = 'value1' ,
                              label = 'Select First Value' ,
-                            choices = colnames(USA_health)[3:ncol(USA_health)])
+                            choices = colnames(USA_health)[3:ncol(USA_health)]
                #change input ID to something more specific
                ),
           
@@ -31,11 +32,11 @@ fluidPage(
                              label = 'Select Second Value' ,
                              choices = colnames(USA_health)[3:ncol(USA_health)]
                              
-                              ),
+                              )),
 
-#Panel plot
 mainPanel(
   plotOutput("health_plot")
 )
+
 
 ))
