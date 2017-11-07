@@ -12,6 +12,13 @@ fluidPage(
 
 navbarPage("USA Health Trends",
                   #tabPanel() MAPS AND LEAFLET CODE
+                              tabPanel("Title Page"),
+                              navbarMenu("Maps",
+                                         tabPanel("By State"),
+                                         tabPanel("By County")
+                              ),
+          
+                            
            
                    tabPanel("Statewide Comparisons of Health Variables",
   
@@ -37,10 +44,16 @@ navbarPage("USA Health Trends",
                              choices = colnames(USA_health)[3:ncol(USA_health)]
                              
                               )),
+      
+               
+               mainPanel(
+                 plotOutput("health_plot")
+               )
+               
+               )),
+  
+  tabPanel("Where should you live?"),
+  tabPanel("References")
 
-mainPanel(
-  plotOutput("health_plot")
-)
 
-
-))))
+))
