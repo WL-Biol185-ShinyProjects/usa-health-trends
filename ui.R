@@ -4,6 +4,7 @@ library(readr)
 library(leaflet)
 
 
+
 USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
 USA_health$State <- factor(USA_health$State)
 USA_health$County <- factor(USA_health$County)
@@ -14,7 +15,9 @@ navbarPage("USA Health Trends",
                   #tabPanel() MAPS AND LEAFLET CODE
                               tabPanel("Title Page"),
                               navbarMenu("Maps",
-                                         tabPanel("By State"),
+                                         tabPanel("By State",
+                                                  leafletOutput("state_map")     
+                                         ),
                                          tabPanel("By County")
                               ),
           
