@@ -2,7 +2,7 @@ library(tidyverse)
 library(shiny)
 library(readr)
 library(leaflet)
-
+source("Leaflet Sample.R")
 
 
 USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
@@ -15,8 +15,10 @@ navbarPage("USA Health Trends",
                   #tabPanel() MAPS AND LEAFLET CODE
                               tabPanel("Title Page"),
                               navbarMenu("Maps",
-                                         tabPanel("By State",
-                                                  leafletOutput("state_map")     
+                                         tabPanel("By State", 
+                                        mainPanel(leafletOutput("state_map"))
+                                                   
+                                                      
                                          ),
                                          tabPanel("By County")
                               ),

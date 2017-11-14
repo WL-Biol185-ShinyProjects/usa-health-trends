@@ -7,6 +7,7 @@ library(leaflet)
 
 
 
+
 USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
 USA_health$State <- factor(USA_health$State)
 USA_health$County <- factor(USA_health$County)
@@ -25,10 +26,13 @@ function(input, output) {
       theme(axis.text.x = element_text(angle = 60, hjust = 1))
 
 
-  })   
-    output$state_map <- renderLeaflet({
-      source("Leaflet States.R")   
-    })
+  })} 
+    
+function(input, output) {
+  
+map = leaflet() %>% addTiles() setView(-93.65, 42.0285, zoom = 17)
+
+output$state_map <- renderLeaflet(map)
     
    
     

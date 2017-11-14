@@ -4,6 +4,9 @@ statesGEO  <- rgdal::readOGR("states.geo.json", "OGRGeoJSON")
 stateCodes <- read_csv("states.csv")
 stateHealth <- read_csv("overall state health.csv")
 
+leaflet() %>% addTiles()
+
+
 statesGEO@data <- 
   statesGEO@data %>%
   left_join(stateCodes, by = c("NAME" = "State")) %>%
@@ -24,4 +27,5 @@ statesGEO@data <-
           # , position = "bottomright"
  # ) %>%
  #setView(lat = 38.0110306, lng = -110.4080342, zoom = 4)
+
 
