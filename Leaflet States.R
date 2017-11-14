@@ -4,7 +4,7 @@ statesGEO  <- rgdal::readOGR("states.geo.json", "OGRGeoJSON")
 stateCodes <- read_csv("states.csv")
 stateHealth <- read_csv("overall state health.csv")
 
-leaflet() %>% addTiles()
+#leaflet() %>% addTiles() %>%
 
 
 statesGEO@data <- 
