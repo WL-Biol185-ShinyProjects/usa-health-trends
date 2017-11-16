@@ -7,11 +7,11 @@ library(leaflet)
 
 
 
-
 USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
 USA_health$State <- factor(USA_health$State)
 USA_health$County <- factor(USA_health$County)
- 
+
+
 
 
 #define server logic to draw historgram 
