@@ -31,14 +31,37 @@ function(input, output) {
 
   
 
+  statesGEO  <- rgdal::readOGR("states.geo.json", "OGRGeoJSON")
+  stateCodes <- read_csv("states.csv")
+  stateHealth <- read_csv("overall state health.csv")
 
+  
+
+  statesGEO@data <- 
+    statesGEO@data %>%
+    left_join(stateCodes, by = c("NAME" = "State")) %>%
+    left_join(stateHealth, by = c("Abbreviation" = "State Name"))
+  
+  
   output$state_map <- renderLeaflet({
+  
+    m <- leaflet(statesGEO) %>%
+      setView(-96, 37.8, 4) %>%
+      addTiles()
     
-    leaflet() %>% addTiles() %>% setView(-93.65, 42.0285, zoom = 17)
+    
+    m %>% 
+      addPolygons()
+    
+    
+    
     
   })
+  
+  
+  }
    
-}
+
 
 
 

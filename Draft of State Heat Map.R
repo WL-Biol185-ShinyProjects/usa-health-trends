@@ -10,4 +10,7 @@ statesGEO@data <-
 m <- leaflet(statesGEO) %>%
   setView(-96, 37.8, 4) %>%
   addTiles()
+
+
+m %>% 
 addPolygons()
