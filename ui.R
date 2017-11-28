@@ -22,9 +22,16 @@ navbarPage("USA Health Trends",
                                                       
                                          ),
                                          tabPanel("By County",
-                                            mainPanel(leafletOutput("county_map"))
-                                         ),
-                              ),
+                                            
+                                              sidebarLayout(
+                                                mainPanel(leafletOutput("county_map")), 
+                                                sidebarPanel(
+                                                  selectInput(inputId = 'State', 
+                                                              label = 'Select a state' , 
+                                                              choices = unique(USA_health$State)
+                                                )
+                                         )
+                              ))),
           
                             
            

@@ -79,7 +79,8 @@ output$county_map <- renderLeaflet({
                   alpha = FALSE, reverse = FALSE)
   
   
-  m <- leaflet(countyGEO) %>%
+  m <-  filter(State == input$State) %>% 
+    leaflet(countyGEO) %>%
     setView(-96, 37.8, 4) %>%
     addTiles()
   
