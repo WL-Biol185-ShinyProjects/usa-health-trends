@@ -79,9 +79,10 @@ output$county_map <- renderLeaflet({
                   alpha = FALSE, reverse = FALSE)
   
   
-  m <-  filter(State == input$State) %>% 
+  m <-  countyHealth %>% 
+    filter(State == input$State) %>% 
     leaflet(countyGEO) %>%
-    setView(-96, 37.8, 4) %>%
+    #setView(-96, 37.8, 4) %>%
     addTiles()
   
   m %>% addPolygons(

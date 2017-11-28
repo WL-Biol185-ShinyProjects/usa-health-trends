@@ -8,7 +8,7 @@ source("Leaflet Sample.R")
 USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
 USA_health$State <- factor(USA_health$State)
 USA_health$County <- factor(USA_health$County)
-
+countyHealth <- read_csv("Overall County Data.csv")
 
 fluidPage(
 
@@ -28,7 +28,7 @@ navbarPage("USA Health Trends",
                                                 sidebarPanel(
                                                   selectInput(inputId = 'State', 
                                                               label = 'Select a state' , 
-                                                              choices = unique(USA_health$State)
+                                                              choices = unique(countyHealth$State)
                                                 )
                                          )
                               ))),
