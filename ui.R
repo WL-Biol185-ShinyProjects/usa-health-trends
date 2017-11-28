@@ -17,11 +17,13 @@ navbarPage("USA Health Trends",
                               tabPanel("Title Page"),
                               navbarMenu("Maps",
                                          tabPanel("By State", 
-                                        mainPanel(leafletOutput("state_map"))
+                                            mainPanel(leafletOutput("state_map"))
                                                    
                                                       
                                          ),
-                                         tabPanel("By County")
+                                         tabPanel("By County",
+                                            mainPanel(leafletOutput("county_map"))
+                                         ),
                               ),
           
                             
