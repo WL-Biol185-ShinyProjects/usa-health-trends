@@ -31,7 +31,6 @@ function(input, output) {
   }) 
   
   statesGEO  <- rgdal::readOGR("states.geo.json", "OGRGeoJSON")
-  stateCodes <- read_csv("states.csv")
   stateHealth <- read_csv("overall state health.csv")
   
   statesGEO@data <- 
@@ -45,12 +44,17 @@ function(input, output) {
     pal <- colorBin("YlOrRd", domain = c(1,50), bins = 5, pretty = TRUE, na.color = "#809000",
                     alpha = FALSE, reverse = FALSE)
     
+    labels <- sprintf(
+      "<strong>%s</strong><br/>%g",
+      stateHealth$`State Name`, stateHealth$Rank
+    ) %>% lapply(htmltools::HTML)
     
-    m <- leaflet(statesGEO) %>%
+    
+    PlotMap <- leaflet(statesGEO) %>%
       setView(-96, 37.8, 4) %>%
       addTiles()
     
-    m %>% addPolygons(
+    PlotMap %>% addPolygons(
       fillColor = ~pal(Rank),
       weight = 2,
       opacity = 1,
@@ -62,7 +66,14 @@ function(input, output) {
         color = "#667",
         dashArray = "",
         fillOpacity = 0.7,
-        bringToFront = TRUE))
+        bringToFront = TRUE),
+      label = labels,
+      labelOptions = labelOptions(
+        style = list("font-weight" = "normal", padding = "3px 8px"),
+        textsize = "15px",
+        direction = "auto"))
+  
+    
     
   })
   
