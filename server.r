@@ -68,7 +68,7 @@ function(input, output) {
   
 output$county_map <- renderLeaflet({
   countyGEO  <- rgdal::readOGR("counties.json", "OGRGeoJSON")
-  countyHealth <- read_csv("")
+  countyHealth <- read_csv("Overall County Data.csv")
   
   countyGEO@data <- 
     countyGEO@data %>%
