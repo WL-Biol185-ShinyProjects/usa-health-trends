@@ -46,7 +46,7 @@ function(input, output) {
     
     labels <- sprintf(
       "<strong>%s</strong><br/>%g",
-      stateHealth$`State Name`, stateHealth$Rank
+      statesGEO@data$NAME, statesGEO@data$Rank
     ) %>% lapply(htmltools::HTML)
     
     
@@ -77,7 +77,6 @@ function(input, output) {
     
   })
   
-output$county_map <- renderLeaflet({
   countyGEO  <- rgdal::readOGR("counties.json", "OGRGeoJSON")
   countyHealth <- read_csv("Overall County Data.csv")
   
@@ -85,22 +84,27 @@ output$county_map <- renderLeaflet({
     countyGEO@data %>%
     left_join(countyHealth, by = c("NAME" = "County"))
   
+    
+output$county_map <- renderLeaflet({
+
   #bins <- c(1, 2, 3, 4, 5)
   pal <- colorBin("YlOrRd", domain = c(1,5), bins = 5, pretty = TRUE, na.color = "#809000",
                   alpha = FALSE, reverse = FALSE)
   
   
-  m <-  countyHealth %>% 
+  PlotCounty <-  countyHealth %>% 
     filter(State == input$State) %>% 
+    group_by(State) %>%
     leaflet(countyGEO) %>%
     #setView(-96, 37.8, 4) %>%
     addTiles()
   
-  m %>% addPolygons(
+  PlotCounty %>% addPolygons(input$State,
     fillColor = ~pal(HO_Quartile),
     weight = 2,
     opacity = 1,
     color = "white",
+    
     dashArray = "3",
     fillOpacity = 0.7,
     highlight = highlightOptions(
