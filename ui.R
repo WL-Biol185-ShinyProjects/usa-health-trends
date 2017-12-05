@@ -20,30 +20,31 @@ fluidPage(
 
 navbarPage("USA Health Trends",
                   #tabPanel() MAPS AND LEAFLET CODE
-                              tabPanel("Title Page"),
-                              navbarMenu("Maps",
-                                         tabPanel("By State", 
-                                            mainPanel(leafletOutput("state_map"))
+
+tabPanel("Title Page"),
+          navbarMenu("Maps",
+                  tabPanel("By State", 
+                           mainPanel(leafletOutput("state_map"))
                                                    
                                                       
                                          ),
-                                         tabPanel("By County",
+                   tabPanel("By County",
                                             
-                                              sidebarLayout(
-                                                mainPanel(leafletOutput("county_map")), 
-                                                sidebarPanel(
-                                                  selectInput(inputId = 'State', 
-                                                              label = 'Select a state' , 
-                                                              choices = unique(countyHealth$State)
+                          sidebarLayout(
+                               mainPanel(leafletOutput("county_map")), 
+                                      sidebarPanel(
+                                        selectInput(inputId = 'State', 
+                                              label = 'Select a state' , 
+                                              choices = unique(countyHealth$State)
                                                 )
                                          )
                               ))),
           
                             
            
-                   tabPanel("Statewide Comparisons of Health Variables",
+tabPanel("Statewide Comparisons of Health Variables",
   
-  titlePanel('Health Outcomes by County') , 
+         titlePanel('Health Outcomes by County') , 
              
              sidebarLayout(
                #panel with widgets
