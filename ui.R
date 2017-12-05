@@ -22,7 +22,12 @@ fluidPage(theme = shinytheme("cerulean"),
 navbarPage("USA Health Trends",
                   #tabPanel() MAPS AND LEAFLET CODE
 
-tabPanel("Title Page"),
+tabPanel("Title Page",
+         
+         titlePanel("Welcome to USA Health Trends!"),
+            mainPanel(p("Analysis of a variety of health factors and outcomes. Where should you live in the USA to optimize health? Our project will tell you.")
+         )),
+
           navbarMenu("Maps",
                   tabPanel("By State", 
                            mainPanel(leafletOutput("state_map"))
