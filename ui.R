@@ -2,7 +2,7 @@ library(tidyverse)
 library(shiny)
 library(readr)
 library(leaflet)
-source("Leaflet Sample.R")
+library(shinythemes)
 
 
 USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
@@ -16,12 +16,18 @@ USA_health_columns <- sapply( colnames(USA_health[3:ncol(USA_health)]),
 
 countyHealth <- read_csv("Overall County Data.csv")
 
-fluidPage(
-
+fluidPage(theme = shinytheme("cerulean"),
+  
+  
 navbarPage("USA Health Trends",
                   #tabPanel() MAPS AND LEAFLET CODE
 
-tabPanel("Title Page"),
+tabPanel("Title Page",
+         
+         titlePanel("Welcome to USA Health Trends!"),
+            mainPanel(p("Analysis of a variety of health factors and outcomes. Where should you live in the USA to optimize health? Our project will tell you.")
+         )),
+
           navbarMenu("Maps",
                   tabPanel("By State", 
                            mainPanel(leafletOutput("state_map"))
@@ -50,10 +56,18 @@ tabPanel("Statewide Comparisons of Health Variables",
                #panel with widgets
                sidebarPanel(
                  selectInput(inputId = 'outcomesState', 
-                             label = 'Select a state' , 
+                             label = 'Select a State' , 
                              choices = unique(USA_health$State)
                              ),
-                            
+    
+                 selectInput(inputId = 'outcomesCounty',
+                                label = 'Select Counties' ,
+                                choices = unique(USA_health$County),
+                                                 selected = NULL, 
+                                                 multiple = TRUE,
+                                                 selectize = TRUE,
+                                ),
+                 
                       
                              selectInput(inputId = 'outcomesYaxis' ,
                              label = 'Select First Value' ,
