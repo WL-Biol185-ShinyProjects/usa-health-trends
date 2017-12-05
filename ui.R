@@ -51,9 +51,13 @@ tabPanel("Statewide Comparisons of Health Variables",
                #panel with widgets
                sidebarPanel(
                  selectInput(inputId = 'outcomesState', 
-                             label = 'Select a state' , 
+                             label = 'Select a State' , 
                              choices = unique(USA_health$State)
                              ),
+                 selectInput(inputId = 'outcomesCounty',
+                             label = 'Select Counties' ,
+                             choices = unique(USA_health$County,
+                              multiple = TRUE)),
                             
                       
                              selectInput(inputId = 'outcomesYaxis' ,
