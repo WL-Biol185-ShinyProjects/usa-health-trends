@@ -23,9 +23,11 @@ navbarPage("USA Health Trends",
                   #tabPanel() MAPS AND LEAFLET CODE
 
 tabPanel("Title Page",
-         
-         titlePanel("Welcome to USA Health Trends!"),
-            mainPanel(p("Analysis of a variety of health factors and outcomes. Where should you live in the USA to optimize health? Our project will tell you.")
+        
+            mainPanel(
+                  h1("Welcome to USA Health Trends!", align = "center"),
+                  h4("This website is a compilation of analyses that examine a variety of health factors and outcomes. Which states are the healthiest (or unhealthiest)? What are the health rankings of counties within states? 
+                        How do statewide counties compare in terms of health factors, such as violent crime rates? Our project will tell you!", align = "center")
          )),
 
           navbarMenu("Maps",
@@ -39,7 +41,7 @@ tabPanel("Title Page",
                           sidebarLayout(
                                mainPanel(leafletOutput("county_map")), 
                                       sidebarPanel(
-                                        selectInput(inputId = 'State', 
+                                        selectInput(inputId = 'StateCounty', 
                                               label = 'Select a state' , 
                                               choices = unique(countyHealth$State)
                                                 )
