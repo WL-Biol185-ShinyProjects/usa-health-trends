@@ -2,7 +2,7 @@ library(tidyverse)
 library(shiny)
 library(readr)
 library(leaflet)
-source("Leaflet Sample.R")
+library(shinythemes)
 
 
 USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
@@ -16,8 +16,9 @@ USA_health_columns <- sapply( colnames(USA_health[3:ncol(USA_health)]),
 
 countyHealth <- read_csv("Overall County Data.csv")
 
-fluidPage(
-
+fluidPage(theme = shinytheme("cerulean"),
+  
+  
 navbarPage("USA Health Trends",
                   #tabPanel() MAPS AND LEAFLET CODE
 
