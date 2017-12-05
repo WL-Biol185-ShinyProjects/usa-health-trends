@@ -14,17 +14,16 @@ USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
 USA_health$State <- factor(USA_health$State)
 USA_health$County <- factor(USA_health$County)
 
-
+colnames(USA_health)[3:ncol(USA_health)] <- cleanColumnNames(colnames(USA_health[3:ncol(USA_health)]))
 
 #define server logic to draw historgram 
 function(input, output) {
   
   output$health_plot <- renderPlot ({
     
-    
     USA_health %>%
-      filter(State == input$State) %>%
-      ggplot(aes_string("County", input$value1)) + geom_bar(stat = "identity", fill(input$value2)) + 
+      filter(State == input$outcomesState) %>%
+      ggplot(aes_string("County", input$outcomesYaxis, fill = input$outcomesGrouping)) + geom_bar(stat = "identity") + 
       theme(axis.text.x = element_text(angle = 60, hjust = 1))
     
     

@@ -8,6 +8,12 @@ source("Leaflet Sample.R")
 USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
 USA_health$State <- factor(USA_health$State)
 USA_health$County <- factor(USA_health$County)
+
+USA_health_columns <- sapply( colnames(USA_health[3:ncol(USA_health)]), 
+                              cleanColumnNames, 
+                              simplify = FALSE
+                            )
+
 countyHealth <- read_csv("Overall County Data.csv")
 
 fluidPage(
@@ -42,21 +48,21 @@ navbarPage("USA Health Trends",
              sidebarLayout(
                #panel with widgets
                sidebarPanel(
-                 selectInput(inputId = 'State', 
+                 selectInput(inputId = 'outcomesState', 
                              label = 'Select a state' , 
                              choices = unique(USA_health$State)
                              ),
                             
                       
-                             selectInput(inputId = 'value1' ,
+                             selectInput(inputId = 'outcomesYaxis' ,
                              label = 'Select First Value' ,
-                            choices = colnames(USA_health)[3:ncol(USA_health)]
+                            choices = USA_health_columns
                #change input ID to something more specific
                ),
           
-                              selectInput(inputId = 'value2' ,
+                              selectInput(inputId = 'outcomesGrouping' ,
                              label = 'Select Second Value' ,
-                             choices = colnames(USA_health)[3:ncol(USA_health)]
+                             choices = USA_health_columns
                              
                               )),
       
