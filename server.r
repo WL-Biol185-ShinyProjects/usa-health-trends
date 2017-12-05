@@ -84,8 +84,8 @@ output$county_map <- renderLeaflet({
   
   countyGEO@data <- 
     countyGEO@data %>%
-    left_join(countyHealth, by = c("NAME" = "County")) %>% 
-    filter(State == input$StateCounty)
+    left_join(countyHealth, by = c("NAME" = "County")) %>%
+        filter(State == input$StateCounty)
 
   #bins <- c(1, 2, 3, 4, 5)
   palcounty <- colorBin("YlOrRd", domain = c(1,5), bins = 5, pretty = TRUE, na.color = "#809000",
