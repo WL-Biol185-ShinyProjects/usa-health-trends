@@ -59,11 +59,15 @@ tabPanel("Statewide Comparisons of Health Variables",
                              label = 'Select a State' , 
                              choices = unique(USA_health$State)
                              ),
+    
                  selectInput(inputId = 'outcomesCounty',
-                             label = 'Select Counties' ,
-                             choices = unique(USA_health$County,
-                              multiple = TRUE)),
-                            
+                                label = 'Select Counties' ,
+                                choices = unique(USA_health$County),
+                                                 selected = NULL, 
+                                                 multiple = TRUE,
+                                                 selectize = TRUE,
+                                ),
+                 
                       
                              selectInput(inputId = 'outcomesYaxis' ,
                              label = 'Select First Value' ,
