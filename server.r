@@ -70,9 +70,9 @@ function(input, output) {
       labelOptions = labelOptions(
         style = list("font-weight" = "normal", padding = "3px 8px"),
         textsize = "15px",
-        direction = "auto"))
-  
-    
+        direction = "auto")) %>%
+      addLegend(pal = pal, values = ~Rank, opacity = 0.7, title = NULL,
+                position = "bottomright")
     
   })
   
