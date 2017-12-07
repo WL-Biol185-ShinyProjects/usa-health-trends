@@ -7,6 +7,10 @@ library(leaflet)
 library(RColorBrewer)
 library(dplyr)
 
+filterEqual <- function(x, columnName, value) {
+  x[x[[columnName]] == value, ]
+}
+
 
 
 
@@ -90,7 +94,7 @@ output$county_map <- renderLeaflet({
   countyGEO@data <- 
     countyGEO@data %>%
     left_join(countyHealth, by = c("stateName" = "State")) %>%
-    filter(stateName == input$StateCounty)
+    filterEqual("stateName", input$StateCounty)
 
   
   #bins <- c(1, 2, 3, 4, 5)
