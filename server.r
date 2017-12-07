@@ -90,7 +90,7 @@ output$county_map <- renderLeaflet({
   countyGEO@data <- 
     countyGEO@data %>%
     left_join(countyHealth, by = c("stateName" = "State")) %>%
-    filter(countyGEO@data, stateName == input$StateCounty)
+    filter(stateName == input$StateCounty)
 
   
   #bins <- c(1, 2, 3, 4, 5)
