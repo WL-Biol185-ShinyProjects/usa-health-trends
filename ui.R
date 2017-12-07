@@ -26,6 +26,7 @@ tabPanel("Title Page",
         
             mainPanel(
                   h1("Welcome to USA Health Trends!", align = "center"),
+                  div(img(src = "Happy Fam.jpg", height = 600, width = 600,  style="text-align: center;")),
                   h4("This website is a compilation of analyses that examine a variety of health factors and outcomes. Which states are the healthiest (or unhealthiest)? What are the health rankings of counties within states? 
                         How do statewide counties compare in terms of health factors, such as violent crime rates? Our project will tell you!", align = "center")
          )),
