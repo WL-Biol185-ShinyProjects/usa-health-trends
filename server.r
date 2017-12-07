@@ -76,17 +76,23 @@ function(input, output) {
     
   })
   
-    
-output$county_map <- renderLeaflet({
-  
+
   countyGEO  <- rgdal::readOGR("counties.json", "OGRGeoJSON")
   countyHealth <- read_csv("Overall County Data.csv", na = "NR")
   
+  stateName              <- as.character(statesGEO@data$NAME)
+  names(stateName)       <- as.character(statesGEO@data$STATE)
+  countyGEO@data$stateName <- stateName[as.character(countyGEO@data$STATE)]
+  
+  
+output$county_map <- renderLeaflet({
+  
   countyGEO@data <- 
     countyGEO@data %>%
-    left_join(countyHealth, by = c("NAME" = "County")) %>%
-        filter(State == input$StateCounty)
+    left_join(countyHealth, by = c("stateName" = "State")) %>%
+    filter(countyGEO@data, stateName == input$StateCounty)
 
+  
   #bins <- c(1, 2, 3, 4, 5)
   palcounty <- colorBin("YlOrRd", domain = c(1,5), bins = 5, pretty = TRUE, na.color = "#809000",
                   alpha = FALSE, reverse = FALSE)
