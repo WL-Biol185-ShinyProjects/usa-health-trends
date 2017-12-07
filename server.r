@@ -94,9 +94,12 @@ output$county_map <- renderLeaflet({
 
   
   #bins <- c(1, 2, 3, 4, 5)
-  palcounty <- colorBin("YlOrRd", domain = c(1,5), bins = 5, pretty = TRUE, na.color = "#809000",
+  palcounty <- colorBin("YlOrRd", domain = c(1, 5), bins = 5, pretty = TRUE, na.color = "#809000",
                   alpha = FALSE, reverse = FALSE)
-  
+  labels <- sprintf(
+    "<strong>%s</strong><br/>%g",
+    countyGEO@data$COUNTY, countyGEO@data$HO_Quartile
+  ) %>% lapply(htmltools::HTML)
   
   PlotCounty <- 
     leaflet(countyGEO) %>%
@@ -117,13 +120,21 @@ output$county_map <- renderLeaflet({
       color = "#667",
       dashArray = "",
       fillOpacity = 0.7,
-      bringToFront = TRUE)) %>%
+      bringToFront = TRUE),
+    
+    label = labels,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "15px",
+      direction = "auto")) %>% 
+    addLegend(pal = palcounty, values = ~HO_Quartile, opacity = 0.7, title = NULL,
+    position = "bottomright") %>%
     
     addPolygons( data        = statesGEO
                  , color       = "black"
                  , weight      = 3
                  , fillOpacity = 0
-    )
+                )
   
 })
   
