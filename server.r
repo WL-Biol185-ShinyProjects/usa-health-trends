@@ -117,7 +117,13 @@ output$county_map <- renderLeaflet({
       color = "#667",
       dashArray = "",
       fillOpacity = 0.7,
-      bringToFront = TRUE))
+      bringToFront = TRUE)) %>%
+    
+    addPolygons( data        = statesGEO
+                 , color       = "black"
+                 , weight      = 3
+                 , fillOpacity = 0
+    )
   
 })
   
