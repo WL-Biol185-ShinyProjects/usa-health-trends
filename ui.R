@@ -17,6 +17,7 @@ USA_health_columns <- sapply( colnames(USA_health[3:ncol(USA_health)]),
 countyHealth <- read_csv("Overall County Data.csv")
 
 fluidPage(theme = shinytheme("cerulean"),
+          
   
   
 navbarPage("USA Health Trends",
@@ -26,7 +27,7 @@ tabPanel("Title Page",
         
             mainPanel(
                   h1("Welcome to USA Health Trends!", align = "center"),
-                  div(img(src = "Happy Fam.jpg", height = 600, width = 600,  style="text-align: center;")),
+                  HTML('<center><img src="Happy Fam.jpg" width="400"></center>'),
                   h4("This website is a compilation of analyses that examine a variety of health factors and outcomes. Which states are the healthiest (or unhealthiest)? What are the health rankings of counties within states? 
                         How do statewide counties compare in terms of health factors, such as violent crime rates? Our project will tell you!", align = "center")
          )),
