@@ -89,7 +89,6 @@ tabPanel("Statewide Comparisons of Health Variables",
                
                )),
   
-  tabPanel("Where should you live?"),
   tabPanel("References")
 
 
