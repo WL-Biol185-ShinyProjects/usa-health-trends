@@ -52,7 +52,7 @@ tabPanel("Title Page",
            
 tabPanel("Statewide Comparisons of Health Variables",
   
-         titlePanel('Health Outcomes by County') , 
+         titlePanel('Health Outcomes and Factors by County') , 
              
              sidebarLayout(
                #panel with widgets
@@ -71,13 +71,13 @@ tabPanel("Statewide Comparisons of Health Variables",
                  
                       
                              selectInput(inputId = 'outcomesYaxis' ,
-                             label = 'Select First Value' ,
+                             label = 'Select First Factor or Outcome' ,
                             choices = USA_health_columns
                #change input ID to something more specific
                ),
           
                               selectInput(inputId = 'outcomesGrouping' ,
-                             label = 'Select Second Value' ,
+                             label = 'Select Second Factor or Outcome' ,
                              choices = USA_health_columns
                              
                               )),
