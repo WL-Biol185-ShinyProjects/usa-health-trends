@@ -28,8 +28,9 @@ tabPanel("Title Page",
             mainPanel(
                   h1("Welcome to USA Health Trends!", align = "center"),
                   HTML('<center><img src="Happy Fam.jpg" width="400"></center>'),
-                  h4("This website is a compilation of analyses that examine a variety of health factors and outcomes. Which states are the healthiest (or unhealthiest)? What are the health rankings of counties within states? 
-                        How do statewide counties compare in terms of health factors, such as violent crime rates? Our project will tell you!", align = "center")
+                  h4("Health and wellbeing is a culmination of a variety of factors, ranging from access to hospitals to one's social networks. As we gather more research on the concept of health, it is essential to understand what these factors are and their quality across different 
+                        communities in America.This website is a compilation of analyses that examine a variety of health factors and outcomes. Which states are the healthiest (or unhealthiest)? What are the health rankings of counties within states? 
+                        How do statewide counties compare in terms of health factors, such as violent crime rates or average number of mentally unhealthy days? Our project will tell you!", align = "center")
          )),
 
           navbarMenu("Maps",
