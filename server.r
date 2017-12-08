@@ -91,18 +91,21 @@ function(input, output) {
   
 output$county_map <- renderLeaflet({
   
+  filteredCountyHealth <- countyHealth %>% 
+    filterEqual("State", input$StateCounty)
+  
   countyGEO@data <- 
     countyGEO@data %>%
-    left_join(countyHealth, by = c("stateName" = "State")) %>%
-    filterEqual("stateName", input$StateCounty)
+    left_join(filteredCountyHealth, by = c("stateName" = "State", "NAME" = "County")) 
+    
 
   
   #bins <- c(1, 2, 3, 4, 5)
-  palcounty <- colorBin("YlOrRd", domain = c(1, 5), bins = 5, pretty = TRUE, na.color = "#809000",
+  palcounty <- colorBin("YlOrRd", domain = c(1, 5), bins = 5, pretty = TRUE, na.color = "#100000",
                   alpha = FALSE, reverse = FALSE)
   labels <- sprintf(
     "<strong>%s</strong><br/>%g",
-    countyGEO@data$COUNTY, countyGEO@data$HO_Quartile
+    countyGEO@data$NAME , countyGEO@data$HO_Quartile
   ) %>% lapply(htmltools::HTML)
   
   PlotCounty <- 
@@ -111,6 +114,14 @@ output$county_map <- renderLeaflet({
     addTiles()
   
   PlotCounty %>% 
+    
+    addPolygons( data        = statesGEO
+                 , color       = "black"
+                 , weight      = 15
+                 , fillOpacity = 0
+                ) %>%
+    
+    
     addPolygons(
     fillColor = ~palcounty(HO_Quartile),
     weight = 2,
@@ -132,13 +143,7 @@ output$county_map <- renderLeaflet({
       textsize = "15px",
       direction = "auto")) %>% 
     addLegend(pal = palcounty, values = ~HO_Quartile, opacity = 0.7, title = NULL,
-    position = "bottomright") %>%
-    
-    addPolygons( data        = statesGEO
-                 , color       = "black"
-                 , weight      = 3
-                 , fillOpacity = 0
-                )
+    position = "bottomright")
   
 })
   
