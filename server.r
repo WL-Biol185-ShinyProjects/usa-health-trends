@@ -23,15 +23,39 @@ colnames(USA_health)[3:ncol(USA_health)] <- cleanColumnNames(colnames(USA_health
 #define server logic to draw historgram 
 function(input, output) {
   
-  output$health_plot <- renderPlot ({
+  #output$health_plot <- renderPlot ({
+    
+    #USA_health %>%
+      #filter(State == input$outcomesState) %>%
+      #ggplot(aes_string("County", input$outcomesYaxis, fill = input$outcomesGrouping)) + geom_bar(stat = "identity") + 
+      #theme(axis.text.x = element_text(angle = 60, hjust = 1))
+    
+    
+  #})
+  
+  output$select_county <- renderUI({
+    
+    selectInput(inputId = 'outcomesCounty',
+                label   = 'Select Counties',
+                choices = unique(USA_health$County),
+                selected = "Autauga",
+                multiple = TRUE)
+  }) 
+
+  output$health_plot <- renderPlot({
     
     USA_health %>%
-      filter(State == input$outcomesState) %>%
-      ggplot(aes_string("County", input$outcomesYaxis, fill = input$outcomesGrouping)) + geom_bar(stat = "identity") + 
+      filter(County %in% input$outcomesCounty, input$outcomesYaxis) %>%
+      ggplot(aes_string("County", input$outcomesYaxis)) + 
+      geom_bar(stat = "identity", fill = input$outcomesGrouping) +
       theme(axis.text.x = element_text(angle = 60, hjust = 1))
     
-    
-  }) 
+  })
+  
+
+  USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
+  USA_health$State <- factor(USA_health$State)
+  USA_health$County <- factor(USA_health$County)
   
   statesGEO  <- rgdal::readOGR("states.geo.json", "OGRGeoJSON")
   stateHealth <- read_csv("overall state health.csv")

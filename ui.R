@@ -64,20 +64,15 @@ tabPanel("Statewide Comparisons of Health Variables",
                              label = 'Select a State' , 
                              choices = unique(USA_health$State)
                              ),
+              
     
-                 selectInput(inputId = 'outcomesCounty',
-                                label = 'Select Counties' ,
-                                choices = unique(USA_health$County),
-                                                 multiple = TRUE,
-                                                 selectize = TRUE,
-                                ),
+                            uiOutput(outputId = "select_county"),
                  
                       
                              selectInput(inputId = 'outcomesYaxis' ,
                              label = 'Select First Factor or Outcome' ,
                             choices = USA_health_columns
-               #change input ID to something more specific
-               ),
+                                         ),
           
                               selectInput(inputId = 'outcomesGrouping' ,
                              label = 'Select Second Factor or Outcome' ,
