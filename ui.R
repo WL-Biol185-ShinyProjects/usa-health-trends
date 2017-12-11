@@ -35,7 +35,8 @@ tabPanel("Title Page",
 
           navbarMenu("Maps",
                   tabPanel("By State", 
-                           mainPanel(leafletOutput("state_map"))
+                           mainPanel(leafletOutput("state_map"),
+                                     h4("The colors of this map represent the rankings of all 50 U.S. States by their health outcomes. Hover over the state you are interested in to find its national health outcomes ranking. A ranking of 1 indicates the best health outcomes, and a ranking of 50 indicates the worst health outcomes."))
                                                    
                                                       
                                          ),
@@ -47,6 +48,7 @@ tabPanel("Title Page",
                                         selectInput(inputId = 'StateCounty', 
                                               label = 'Select a state' , 
                                               choices = unique(countyHealth$State)
+                                     
                                                 )
                                          )
                               ))),
