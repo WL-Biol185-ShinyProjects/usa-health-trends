@@ -43,13 +43,12 @@ tabPanel("Title Page",
                    tabPanel("By County",
                                             
                           sidebarLayout(
-                               mainPanel(leafletOutput("county_map")), 
+                               mainPanel(leafletOutput("county_map"),
+                                         h4("The colors of this map represent the health outcome rankings by quartiles of all U.S. counties. Select the state you are intersted in, then use the map to zoom in and view the health outcomes of its counties. The first quartile indicates the best health outcomes, and the fourth quartile indicates the worst health outcomes.")), 
                                       sidebarPanel(
                                         selectInput(inputId = 'StateCounty', 
                                               label = 'Select a state' , 
-                                              choices = unique(countyHealth$State)
-                                     
-                                                )
+                                              choices = unique(countyHealth$State))
                                          )
                               ))),
           
