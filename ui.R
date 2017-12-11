@@ -137,11 +137,14 @@ tabPanel("Statewide Comparisons of Health Variables",
   tabPanel("References",
            mainPanel(
              h4("County Data"),
-             h5("http://www.countyhealthrankings.org/our-approach"),
+             h5(a( href = "http://www.countyhealthrankings.org/our-approach", 
+                  "http://www.countyhealthrankings.org/our-approach")),
              h4("State Data"),
-             h5("https://www.americashealthrankings.org/explore/2016-annual-report/state/ALL"),
+             h5(a( href ="https://www.americashealthrankings.org/explore/2016-annual-report/state/ALL",
+                   "https://www.americashealthrankings.org/explore/2016-annual-report/state/ALL")),
              h4("Title Page Image"),
-             h5("https://www.huffingtonpost.com/donna-m-butts/modern-family-relationships_b_5310933.html")
+             h5(a( href = "https://www.huffingtonpost.com/donna-m-butts/modern-family-relationships_b_5310933.html",
+                   "https://www.huffingtonpost.com/donna-m-butts/modern-family-relationships_b_5310933.html" ))
              ))
 
 
