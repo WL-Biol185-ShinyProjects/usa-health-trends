@@ -14,7 +14,7 @@ filterEqual <- function(x, columnName, value) {
 
 
 
-USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
+USA_health <- read_csv("~/usa-health-trends/USA_health_4.csv", na = "***")
 USA_health$State <- factor(USA_health$State)
 USA_health$County <- factor(USA_health$County)
 
@@ -125,7 +125,7 @@ output$county_map <- renderLeaflet({
 
   
   #bins <- c(1, 2, 3, 4, 5)
-  palcounty <- colorBin("YlOrRd", domain = c(1, 5), bins = 5, pretty = TRUE, na.color = "#100000",
+  palcounty <- colorBin("YlOrRd", domain = c(1, 5), bins = 5, pretty = TRUE, na.color = "white",
                   alpha = FALSE, reverse = FALSE)
   labels <- sprintf(
     "<strong>%s</strong><br/>%g",
