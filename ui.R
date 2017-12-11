@@ -87,7 +87,11 @@ tabPanel("Statewide Comparisons of Health Variables",
                
                )),
   
-  tabPanel("References")
+  tabPanel("References",
+           mainPanel(
+             h5("http://www.countyhealthrankings.org/our-approach"),
+             h5("Image: https://www.huffingtonpost.com/donna-m-butts/modern-family-relationships_b_5310933.html")
+             ))
 
 
 ))
