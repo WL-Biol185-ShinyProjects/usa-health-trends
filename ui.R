@@ -67,7 +67,11 @@ tabPanel("Statewide Comparisons of Health Variables",
                              ),
               
     
-                            uiOutput(outputId = "select_county"),
+                 selectInput(inputId = 'outcomesCounty',
+                             label   = 'Select Counties',
+                             choices = "",
+                             selected = "Autauga",
+                             multiple = TRUE),
                  
                       
                              selectInput(inputId = 'outcomesYaxis' ,

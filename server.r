@@ -21,7 +21,7 @@ USA_health$County <- factor(USA_health$County)
 colnames(USA_health)[3:ncol(USA_health)] <- cleanColumnNames(colnames(USA_health[3:ncol(USA_health)]))
 
 #define server logic to draw historgram 
-function(input, output) {
+function(input, output, session) {
   
   #output$health_plot <- renderPlot ({
     
@@ -32,28 +32,26 @@ function(input, output) {
     
     
   #})
+observe({ 
+  stateFilter <- USA_health %>% filter(State == input$outcomesState)
+  updateSelectizeInput(session, "outcomesCounty", choices = stateFilter$County) 
+        })
   
-  output$select_county <- renderUI({
-    
-    selectInput(inputId = 'outcomesCounty',
-                label   = 'Select Counties',
-                choices = unique(USA_health$County),
-                selected = "Autauga",
-                multiple = TRUE)
-  }) 
-
+  
   output$health_plot <- renderPlot({
     
-    USA_health %>%
-      filter(County %in% input$outcomesCounty, input$outcomesYaxis) %>%
-      ggplot(aes_string("County", input$outcomesYaxis)) + 
-      geom_bar(stat = "identity", fill = input$outcomesGrouping) +
+  stateFilter <- USA_health %>% filter(State == input$outcomesState)
+  print(stateFilter)
+  
+   stateFilter %>%
+      filter(County %in% input$outcomesCounty) %>%
+      ggplot(aes_string("County", input$outcomesYaxis, fill = input$outcomesGrouping)) + 
+      geom_bar(stat = "identity") +
       theme(axis.text.x = element_text(angle = 60, hjust = 1))
     
   })
   
 
-  USA_health <- read_csv("~/usa-health-trends/USA health 2.csv", na = "***")
   USA_health$State <- factor(USA_health$State)
   USA_health$County <- factor(USA_health$County)
   
@@ -168,7 +166,6 @@ output$county_map <- renderLeaflet({
       direction = "auto")) %>% 
     addLegend(pal = palcounty, values = ~HO_Quartile, opacity = 0.7, title = NULL,
     position = "bottomright")
-  
 })
   
   
