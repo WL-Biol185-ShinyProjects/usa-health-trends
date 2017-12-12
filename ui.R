@@ -42,7 +42,7 @@ fluidPage(theme = shinytheme("cerulean"),
                 tabPanel("By County",
                   sidebarLayout(
                     mainPanel(leafletOutput("county_map"),
-                      h4("The colors of this map represent the health outcome rankings by quartiles of all U.S. counties. Select the state you are intersted in, then use the map to zoom in and view the health outcomes of its counties. The first quartile indicates the best health outcomes, and the fourth quartile indicates the worst health outcomes.")), 
+                      h4("The colors of this map represent the health outcome rankings by quartiles of all U.S. counties. Select the state you are intersted in, then use the map to zoom in and view the health outcomes of its counties. The first quartile (the lightest color) indicates the best health outcomes, and the fourth quartile (the darkest color) indicates the worst health outcomes.")), 
                         sidebarPanel(
                                     selectInput(inputId = 'StateCounty', 
                                     label = 'Select a state' , 
@@ -146,8 +146,12 @@ fluidPage(theme = shinytheme("cerulean"),
                                   "https://www.americashealthrankings.org/explore/2016-annual-report/state/ALL")),
                       h4("Title Page Image"),
                       h5(a( href = "https://www.huffingtonpost.com/donna-m-butts/modern-family-relationships_b_5310933.html",
-                                    "https://www.huffingtonpost.com/donna-m-butts/modern-family-relationships_b_5310933.html" ))
-                            ))
+                                    "https://www.huffingtonpost.com/donna-m-butts/modern-family-relationships_b_5310933.html" )),
+                      h4("Acknowledgements"), 
+                      h5("The authors would like to thank Dr. Gregg Whitworth for his help and patience."),
+                      h5("The authors would also like to extend a special thanks to Tyra Banks."),
+                      h5("''Self-love has very little to do with how you feel about your outer self. It's about accepting all of yourself!'' - Tyra Banks")
+                                    ))
 
 
 ))
