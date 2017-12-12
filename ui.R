@@ -5,7 +5,7 @@ library(leaflet)
 library(shinythemes)
 
 
-USA_health <- read_csv("~/usa-health-trends/USA_health_4.csv", na = "***")
+USA_health <- read_csv("USA_health_4.csv", na = "***")
 USA_health$State <- factor(USA_health$State)
 USA_health$County <- factor(USA_health$County)
 
