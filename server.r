@@ -1,4 +1,3 @@
-#IN SERVER.R
 library(shiny)
 library(tidyverse)
 library(ggplot2)
@@ -12,30 +11,18 @@ filterEqual <- function(x, columnName, value) {
 }
 
 
-
-
-USA_health <- read_csv("~/usa-health-trends/USA_health_4.csv", na = "***")
+USA_health <- read_csv("USA_health_4.csv", na = "***")
 USA_health$State <- factor(USA_health$State)
 USA_health$County <- factor(USA_health$County)
 
 colnames(USA_health)[3:ncol(USA_health)] <- cleanColumnNames(colnames(USA_health[3:ncol(USA_health)]))
 
-#define server logic to draw historgram 
 function(input, output, session) {
-  
-  #output$health_plot <- renderPlot ({
-    
-    #USA_health %>%
-      #filter(State == input$outcomesState) %>%
-      #ggplot(aes_string("County", input$outcomesYaxis, fill = input$outcomesGrouping)) + geom_bar(stat = "identity") + 
-      #theme(axis.text.x = element_text(angle = 60, hjust = 1))
-    
-    
-  #})
-observe({ 
-  stateFilter <- USA_health %>% filter(State == input$outcomesState)
-  updateSelectizeInput(session, "outcomesCounty", choices = stateFilter$County) 
-        })
+
+  observe({ 
+    stateFilter <- USA_health %>% filter(State == input$outcomesState)
+    updateSelectizeInput(session, "outcomesCounty", choices = stateFilter$County) 
+         })
   
   
   output$health_plot <- renderPlot({
@@ -49,7 +36,7 @@ observe({
       geom_bar(stat = "identity") +
       theme(axis.text.x = element_text(angle = 60, hjust = 1))
     
-  })
+                                  })
   
 
   USA_health$State <- factor(USA_health$State)
@@ -60,19 +47,17 @@ observe({
   
   statesGEO@data <- 
     statesGEO@data %>%
-    left_join(stateHealth, by = c("NAME" = "State Name")) #%>%
-    #left_join(stateHealth, by = c("State" = "State Name"))
+    left_join(stateHealth, by = c("NAME" = "State Name"))
   
   output$state_map <- renderLeaflet({
     
-    #bins <- c(1, 10, 20, 30, 40, 50)
     pal <- colorBin("YlOrRd", domain = c(1,50), bins = 5, pretty = TRUE, na.color = "#809000",
                     alpha = FALSE, reverse = FALSE)
     
     labels <- sprintf(
       "<strong>%s</strong><br/>%g",
       statesGEO@data$NAME, statesGEO@data$Rank
-    ) %>% lapply(htmltools::HTML)
+                      ) %>% lapply(htmltools::HTML)
     
     
     PlotMap <- leaflet(statesGEO) %>%
@@ -100,7 +85,7 @@ observe({
       addLegend(pal = pal, values = ~Rank, opacity = 0.7, title = NULL,
                 position = "bottomright")
     
-  })
+      })
   
 
   countyGEO  <- rgdal::readOGR("counties.json", "OGRGeoJSON")
@@ -111,24 +96,21 @@ observe({
   countyGEO@data$stateName <- stateName[as.character(countyGEO@data$STATE)]
   
   
-output$county_map <- renderLeaflet({
+  output$county_map <- renderLeaflet({
   
-  filteredCountyHealth <- countyHealth %>% 
-    filterEqual("State", input$StateCounty)
+    filteredCountyHealth <- countyHealth %>% 
+      filterEqual("State", input$StateCounty)
   
   countyGEO@data <- 
     countyGEO@data %>%
     left_join(filteredCountyHealth, by = c("stateName" = "State", "NAME" = "County")) 
     
-
-  
-  #bins <- c(1, 2, 3, 4, 5)
   palcounty <- colorBin("YlOrRd", domain = c(1, 5), bins = 5, pretty = TRUE, na.color = "white",
                   alpha = FALSE, reverse = FALSE)
   labels <- sprintf(
     "<strong>%s</strong><br/>%g",
     countyGEO@data$NAME , countyGEO@data$HO_Quartile
-  ) %>% lapply(htmltools::HTML)
+                    ) %>% lapply(htmltools::HTML)
   
   PlotCounty <- 
     leaflet(countyGEO) %>%
