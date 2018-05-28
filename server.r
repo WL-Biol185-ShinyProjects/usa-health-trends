@@ -5,7 +5,7 @@ library(readr)
 library(leaflet)
 library(RColorBrewer)
 library(dplyr)
-
+library(sp)
 filterEqual <- function(x, columnName, value) {
   x[x[[columnName]] == value, ]
 }

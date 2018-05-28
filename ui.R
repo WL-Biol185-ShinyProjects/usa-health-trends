@@ -3,7 +3,7 @@ library(shiny)
 library(readr)
 library(leaflet)
 library(shinythemes)
-
+library(sp)
 
 USA_health <- read_csv("USA_health_4.csv", na = "***")
 USA_health$State <- factor(USA_health$State)
